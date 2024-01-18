@@ -36,6 +36,13 @@
   resolved "https://registry.yarnpkg.com/@astrojs/compiler/-/compiler-2.4.2.tgz#8fb92cc91cdd67393a71c7aee1e2192c6134fb3f"
   integrity sha512-aPdo8rtdN1eBmyERfP5TnYZOnImLYZ8VPHl0eKhFaWIcEIRYhT5NHSohCwtiKcv1M+BprZWRQymojJ3uuk+x7Q==
 
+"@astrojs/deno@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/deno/-/deno-5.0.1.tgz#69949ab92b01c0c03e45236b7693f49c74406720"
+  integrity sha512-nYztGqHqC+q3A9ynjj3gblAkO/ZylDwahjVTx+2DvZgX4U+BJU/gL5BZkNtL+P10opCKJi29NvvVFvk6jwZHmA==
+  dependencies:
+    esbuild "^0.19.2"
+
 "@astrojs/internal-helpers@0.2.1":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@astrojs/internal-helpers/-/internal-helpers-0.2.1.tgz#4e2e6aabaa9819f17119aa10f413c4d6122c94cf"
@@ -1635,7 +1642,7 @@ es-module-lexer@^1.4.1:
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-1.4.1.tgz#41ea21b43908fe6a287ffcbe4300f790555331f5"
   integrity sha512-cXLGjP0c4T3flZJKQSuziYoq7MlT+rnvfZjfp7h+I7K9BNX54kP9nyWvdbwjQ4u1iWbOL4u96fgeZLToQlZC7w==
 
-esbuild@^0.19.3, esbuild@^0.19.6:
+esbuild@^0.19.2, esbuild@^0.19.3, esbuild@^0.19.6:
   version "0.19.11"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.19.11.tgz#4a02dca031e768b5556606e1b468fe72e3325d96"
   integrity sha512-HJ96Hev2hX/6i5cDVwcqiJBBtuo9+FeIJOtZ9W1kA5M6AMJRHUZlpYZ1/SbEwtO0ioNAW8rUooVpC/WehY2SfA==
