@@ -18,6 +18,18 @@ const Form: React.FC = () => {
     event.preventDefault();
 
     try {
+      if (
+        !form.fullName ||
+        !/^-?\d*\.?\d+$/.test(form.dni) ||
+        !/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(form.email) ||
+        !/^9\d{0,8}$/.test(form.phone) ||
+        !form.location
+      ) {
+        alert("Por favor completa todos los datos!");
+
+        return;
+      }
+
       await axios.post("/methods.json", form);
       alert("Tus datos han sido registrados!");
       setForm(INITIAL_STATE);
@@ -29,105 +41,104 @@ const Form: React.FC = () => {
   };
 
   return (
-    <form
-      className="grid grid-cols-1 grid-rows-4 lg:grid-cols-3 gap-6"
-      onSubmit={handleSubmit}
-    >
-      <div className="lg:col-span-3">
-        <label className="block">
-          <span className="text-[#ff0049] text-2xl">Nombre completo</span>
+    <form onSubmit={handleSubmit} className="flex flex-col">
+      <div className="grid grid-cols-1 grid-rows-3 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-3">
+          <label className="block">
+            <span className="text-[#ff0049] text-2xl">Nombre completo</span>
 
-          <input
-            type="text"
-            value={form.fullName}
-            onChange={(event) => {
-              setForm({ ...form, fullName: event.target.value });
-            }}
-            className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
-            placeholder="Ingresa tu nombre completo"
-          />
-        </label>
+            <input
+              type="text"
+              value={form.fullName}
+              onChange={(event) => {
+                setForm({ ...form, fullName: event.target.value });
+              }}
+              className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
+              placeholder="Ingresa tu nombre completo"
+            />
+          </label>
+        </div>
+        <div className="lg:row-start-2">
+          <label className="block">
+            <span className="text-[#ff0049] text-2xl">DNI</span>
+
+            <input
+              type="text"
+              pattern="\d*"
+              value={form.dni}
+              onChange={(event) => {
+                if (
+                  !/^-?\d*\.?\d+$/.test(event.target.value) &&
+                  event.target.value !== ""
+                )
+                  return;
+
+                setForm({ ...form, dni: event.target.value });
+              }}
+              maxLength={8}
+              className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
+              placeholder="Ingresa tu DNI"
+            />
+          </label>
+        </div>
+        <div className="col-span-1 lg:col-span-2 lg:row-start-2">
+          <label className="block">
+            <span className="text-[#ff0049] text-2xl">Correo electrónico</span>
+
+            <input
+              type="email"
+              value={form.email}
+              onChange={(event) => {
+                setForm({ ...form, email: event.target.value });
+              }}
+              className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
+              placeholder="Ingresa tu correo electrónico"
+            />
+          </label>
+        </div>
+        <div className="lg:row-start-3">
+          <label className="block">
+            <span className="text-[#ff0049] text-2xl">Celular</span>
+
+            <input
+              type="text"
+              pattern="\d*"
+              value={form.phone}
+              onChange={(event) => {
+                if (
+                  !/^-?\d*\.?\d+$/.test(event.target.value) &&
+                  event.target.value !== ""
+                )
+                  return;
+
+                setForm({ ...form, phone: event.target.value });
+              }}
+              maxLength={9}
+              className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
+              placeholder="Ingresa tu celular"
+            />
+          </label>
+        </div>
+        <div className="col-span-1 lg:col-span-2 lg:row-start-3">
+          <label className="block">
+            <span className="text-[#ff0049] text-2xl">
+              Departamento / Provincia / Distrito
+            </span>
+
+            <input
+              type="text"
+              value={form.location}
+              onChange={(event) => {
+                setForm({ ...form, location: event.target.value });
+              }}
+              className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
+              placeholder="Ingresa tu Departamento / Provincia / Distrito"
+            />
+          </label>
+        </div>
       </div>
-      <div className="lg:row-start-2">
-        <label className="block">
-          <span className="text-[#ff0049] text-2xl">DNI</span>
 
-          <input
-            type="text"
-            pattern="\d*"
-            value={form.dni}
-            onChange={(event) => {
-              if (
-                !/^-?\d*\.?\d+$/.test(event.target.value) &&
-                event.target.value !== ""
-              )
-                return;
-
-              setForm({ ...form, dni: event.target.value });
-            }}
-            maxLength={8}
-            className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
-            placeholder="Ingresa tu DNI"
-          />
-        </label>
-      </div>
-      <div className="col-span-1 lg:col-span-2 lg:row-start-2">
-        <label className="block">
-          <span className="text-[#ff0049] text-2xl">Correo electrónico</span>
-
-          <input
-            type="email"
-            value={form.email}
-            onChange={(event) => {
-              setForm({ ...form, email: event.target.value });
-            }}
-            className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
-            placeholder="Ingresa tu correo electrónico"
-          />
-        </label>
-      </div>
-      <div className="lg:row-start-3">
-        <label className="block">
-          <span className="text-[#ff0049] text-2xl">Celular</span>
-
-          <input
-            type="text"
-            pattern="\d*"
-            value={form.phone}
-            onChange={(event) => {
-              if (
-                !/^-?\d*\.?\d+$/.test(event.target.value) &&
-                event.target.value !== ""
-              )
-                return;
-
-              setForm({ ...form, phone: event.target.value });
-            }}
-            maxLength={9}
-            className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
-            placeholder="Ingresa tu celular"
-          />
-        </label>
-      </div>
-      <div className="col-span-1 lg:col-span-2 lg:row-start-3">
-        <label className="block">
-          <span className="text-[#ff0049] text-2xl">
-            Departamento / Provincia / Distrito
-          </span>
-
-          <input
-            type="text"
-            value={form.location}
-            onChange={(event) => {
-              setForm({ ...form, location: event.target.value });
-            }}
-            className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
-            placeholder="Ingresa tu Departamento / Provincia / Distrito"
-          />
-        </label>
-      </div>
-
-      <div className="lg:col-span-3 lg:row-start-4 justify-center items-center flex-col flex">
+      <div className="mt-8 justify-center items-center flex-col flex">
         <label className="inline-flex items-center">
           <input
             type="checkbox"
@@ -185,7 +196,7 @@ const Form: React.FC = () => {
         </label>
         <button
           type="submit"
-          className="inline-flex justify-center rounded-full text-xl font-bold py-3 px-8 bg-[#ff0049] text-white hover:bg-[#FF3F63] transition-all uppercase shadow-md hover:shadow-2xl mt-4 w-full lg:w-auto disabled:pointer-events-none disabled:bg-opacity-60"
+          className="inline-flex justify-center rounded-full text-xl font-bold py-3 px-8 bg-[#ff0049] text-white hover:bg-[#FF3F63] transition-all uppercase shadow-md hover:shadow-2xl mt-12 w-full lg:w-auto disabled:pointer-events-none disabled:bg-opacity-60"
           disabled={!form.privacyPolicyAccept}
         >
           Regístrate aquí
