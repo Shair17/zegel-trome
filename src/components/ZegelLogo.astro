@@ -1,0 +1,19 @@
+---
+interface Props {
+  color?: string;
+  className?: string;
+}
+
+const { color = "#ff0049", className = "w-10 h-10" } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 258 258"
+  class:list={className}
+  fill="currentColor"
+  ><path
+    fill={color}
+    d="M257.838 171.571h-85.709v85.78h85.78v-85.78h-.071ZM.071.649v85.78h111.841L0 197.418l59.436 59.933S244.985 73.435 246.335 72.086c8.592-9.231 16.474-26.274 8.095-45.873C247.968 11.159 233.624 2.07 217.86.862c-1.065-.071-2.201-.142-3.266-.142L.071.649Z"
+  ></path></svg
+>

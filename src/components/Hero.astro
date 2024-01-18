@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import ZegelLogo from "./ZegelLogo.astro";
+import GoDownCircle from "../components/GoDownCircle.astro";
+import HeroLeadingImage from "../assets/hero-leading.png";
+import HalfGirlImage from "../assets/half-girl.png";
+---
+
+<section class="bg-gradient-to-tr from-[#4b1841] to-[#94044a] relative">
+  <div
+    class="flex mx-auto flex-col lg:flex-row max-w-7xl px-6 lg:px-8 gap-10 pt-24 sm:pt-12 lg:pt-32 relative"
+  >
+    <div
+      class="flex-1 justify-center items-center flex relative -mt-24 sm:-mt-12 lg:-mt-32"
+    >
+      <Image
+        src={HeroLeadingImage}
+        class="w-auto h-auto object-cover"
+        alt="Despega con Trome gracias a Zegel"
+      />
+    </div>
+
+    <div class="flex-1 justify-center items-center flex relative">
+      <div class="relative flex items-center justify-center">
+        <div class="absolute -top-4 lg:-top-10 z-0">
+          <ZegelLogo
+            className="w-[350px] h-[350px] lg:w-[450px] lg:h-[450px]"
+          />
+        </div>
+
+        <div class="relative mt-auto">
+          <Image
+            src={HalfGirlImage}
+            class="w-[400px] lg:w-[500px] h-auto object-cover z-10"
+            alt="Despega con Trome gracias a Zegel"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-1/2 translate-y-1/2">
+    <GoDownCircle />
+  </div>
+
+  <div
+    class="hidden lg:block absolute -right-52 -mt-10 top-1/2 transform -rotate-90"
+  >
+    <span class="text-neutral-100 text-lg tracking-wide"
+      >RUC: 20553617627 - Servicio Educativo Empresarial S.A.C.</span
+    >
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Benefits from "../components/Benefits.astro";
+import WhatGoingToLearn from "../components/WhatGoingToLearn.astro";
+import About from "../components/About.astro";
+import RegisterForm from "../components/RegisterForm.astro";
+---
+
+<Layout title="Despega con Trome">
+  <main>
+    <Hero />
+    <!-- ¿Qué es desoega con Trome? -->
+    <About />
+
+    <!-- Beneficios -->
+    <Benefits />
+
+    <!-- ¿Qué voy aprender? -->
+    <WhatGoingToLearn />
+  </main>
+
+  <footer class="bg-[#4f0b3e]">
+    <RegisterForm />
+  </footer>
+</Layout>
+
+<style></style>

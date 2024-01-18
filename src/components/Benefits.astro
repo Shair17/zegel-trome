@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import LaptopIcon from "../assets/icons/laptop.png";
+import StudentIcon from "../assets/icons/student.png";
+import CertificateIcon from "../assets/icons/certificate.png";
+import StudentAndMedalIcon from "../assets/icons/student-and-medal.png";
+---
+
+<section class="bg-[#ff0049]">
+  <div class="mx-auto py-10 max-w-7xl px-6 sm:py-14 lg:py-20 lg:px-8">
+    <h2 class="font-bold text-white text-5xl text-center">
+      ¿Qué beneficios obtendré?
+    </h2>
+
+    <div
+      class="grid mt-10 sm:mt-14 lg:mt-20 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+    >
+      <div class="flex flex-col gap-4 items-center">
+        <Image
+          src={LaptopIcon}
+          class="w-56 h-auto rounded-full"
+          alt="8 Cursos gratis"
+        />
+        <h3 class="text-white text-center text-2xl px-2 max-w-xs">
+          8 Cursos <span class="font-bold">gratis</span>
+        </h3>
+      </div>
+      <div class="flex flex-col gap-4 items-center">
+        <Image
+          src={StudentIcon}
+          class="w-56 h-auto rounded-full"
+          alt="Estudia a tu ritmo"
+        />
+        <h3 class="text-white text-center text-2xl px-2 max-w-xs">
+          <span class="font-bold">Estudia</span> a tu ritmo
+        </h3>
+      </div>
+      <div class="flex flex-col gap-4 items-center">
+        <Image
+          src={CertificateIcon}
+          class="w-56 h-auto rounded-full"
+          alt="Certificado a nombre de InLearning y Trome"
+        />
+        <h3 class="text-white text-center text-2xl px-2 max-w-xs">
+          <span class="font-bold">Certificado</span> a nombre de InLearning y Trome
+        </h3>
+      </div>
+      <div class="flex flex-col gap-4 items-center">
+        <Image
+          src={StudentAndMedalIcon}
+          class="w-56 h-auto rounded-full"
+          alt="+55 años formando a los mejores profesionales y empresarios"
+        />
+        <h3 class="text-white text-center text-2xl px-2 max-w-xs">
+          <span class="font-bold">+55 años</span> formando a los mejores profesionales
+          y empresarios
+        </h3>
+      </div>
+    </div>
+  </div>
+</section>
