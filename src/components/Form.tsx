@@ -30,9 +30,12 @@ const Form: React.FC = () => {
         return;
       }
 
-      await axios.post("/methods.json", form);
-      alert("Tus datos han sido registrados!");
+      const response = await axios.post("/methods.json", form);
       setForm(INITIAL_STATE);
+
+      if (response.data.ok) {
+        window.location.href = '/gracias';
+      }
     } catch (error) {
       console.log(error);
       setForm(INITIAL_STATE);

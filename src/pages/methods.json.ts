@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import nodemailer from "nodemailer";
+import nodemailer, { type SendMailOptions } from "nodemailer";
 
 interface FormDataValues {
   fullName: string;
@@ -41,11 +41,48 @@ export const POST: APIRoute = async ({ request }) => {
       },
     });
 
-    const mailOptions = {
+    const mailOptions: SendMailOptions = {
       from: "zegelvirtualnoreply@gmail.com",
       to: form.email,
-      subject: "Prueba de envio de correo",
-      text: `Correo: ${form.email}, Contraseña: ${form.dni}`,
+      subject:
+        "¡Bienvenido(a) a Despega con Trome y Zegel! Accede a tu curso online ahora",
+      html: `
+      <p>Estimado(a) ${form.fullName},</p>
+
+      <p>En nombre del equipo de Trome y Zegel, queremos darte la más cordial bienvenida a nuestro programa educativo. Estamos emocionados de tenerte a bordo y confiamos en que tu experiencia de aprendizaje será enriquecedora.</p>
+
+      <p>Para comenzar tu curso 100% online, te proporcionamos los detalles de acceso al Campus Virtual:</p>
+
+      <ul>
+      <li>Enlace de Acceso: <a href="https://campus.zegelvirtual.com/Login">https://campus.zegelvirtual.com/Login</a></li>
+      <li>Correo Electrónico: <strong>${form.email}</strong></li>
+      <li>Contraseña: <strong>${form.dni}</strong></li>
+      </ul>
+
+      <p>Por favor, sigue estos pasos para ingresar:</p>
+      
+      <ol>
+      <li>Haz clic en el enlace proporcionado.</li>
+      <li>Ingresa tu correo electrónico en el campo correspondiente.</li>
+      <li>Utiliza tu DNI como contraseña para acceder al curso.</li>
+      </ol>
+      
+      <p>Recuerda que este correo electrónico contiene información sensible, por lo que te recomendamos guardarla de manera segura. Si tienes algún problema para acceder o necesitas asistencia técnica, no dudes en contactarnos a rconcha@inlearning.edu.pe</p>
+      
+      <p>Recuerda que tienes 30 días para culminar el curso una vez que lo actives.</p>
+      
+      <p>¡Todos los cursos incluyen certificado!</p>
+      
+      <p>Estamos comprometidos a brindarte una experiencia educativa de calidad, y estamos aquí para apoyarte en cada paso del camino. ¡Esperamos que disfrutes de tu viaje de aprendizaje con Despega con Trome y Zegel!</p>
+      
+      <p>¡Gracias por confiar en nosotros!</p>
+      
+      <p>Saludos,</p>
+      <p><strong>Roger</strong></p>
+      <p>[Tu Cargo]</p>
+      <p>Despega con Trome y Zegel</p>
+      <p><a href="mailto:rconcha@inlearning.edu.pe">rconcha@inlearning.edu.pe</a></p>
+      `,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
