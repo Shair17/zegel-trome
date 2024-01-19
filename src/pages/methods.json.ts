@@ -79,7 +79,7 @@ export const POST: APIRoute = async ({ request }) => {
       
       <p>Saludos,</p>
       <p><strong>Roger</strong></p>
-      <p>[Tu Cargo]</p>
+      <p>Jefe de Producto - Educación Ejecutiva</p>
       <p>Despega con Trome y Zegel</p>
       <p><a href="mailto:rconcha@inlearning.edu.pe">rconcha@inlearning.edu.pe</a></p>
       `,
