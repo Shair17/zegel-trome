@@ -1,7 +1,6 @@
 import type { APIRoute } from "astro";
 import nodemailer, { type SendMailOptions } from "nodemailer";
 import { formSchema, type FormDataValues } from "../schema";
-import z from "zod";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
