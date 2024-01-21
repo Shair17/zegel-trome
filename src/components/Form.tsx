@@ -189,7 +189,7 @@ const Form: React.FC = () => {
             >
               <option value="">Selecciona</option>
 
-              {displayDistricts.map((districts, key) => (
+              {displayDistricts.map((districts) => (
                 <option
                   key={`${uniqueId}-option-districts-${districts}`}
                   value={districts}
