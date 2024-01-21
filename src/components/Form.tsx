@@ -23,10 +23,8 @@ const Form: React.FC = () => {
 
       const response = await axios.post("/methods.json", data);
 
-      console.log(response);
-
       if (response.data.ok) {
-        // window.location.href = "/gracias";
+        window.location.href = "/gracias";
       }
     } catch (error) {
       console.log(error);
