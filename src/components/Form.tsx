@@ -19,8 +19,6 @@ const Form: React.FC = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      console.log(data);
-
       const response = await axios.post("/methods.json", data);
 
       if (response.data.ok) {
@@ -34,8 +32,8 @@ const Form: React.FC = () => {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col">
-      <div className="grid grid-cols-1 grid-rows-3 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-3">
+      <div className="grid grid-cols-1 grid-rows-4 lg:grid-rows-3 lg:grid-cols-4 gap-6">
+        <div className="lg:col-span-4">
           <label className="block">
             <span className="text-[#ff0049] text-2xl">Nombre completo</span>
 
@@ -50,7 +48,7 @@ const Form: React.FC = () => {
             ) : null}
           </label>
         </div>
-        <div className="lg:row-start-2">
+        <div className="lg:col-span-1">
           <label className="block">
             <span className="text-[#ff0049] text-2xl">DNI</span>
 
@@ -71,7 +69,7 @@ const Form: React.FC = () => {
             ) : null}
           </label>
         </div>
-        <div className="col-span-1 lg:col-span-2 lg:row-start-2">
+        <div className="lg:col-span-3">
           <label className="block">
             <span className="text-[#ff0049] text-2xl">Correo electrónico</span>
 
@@ -86,7 +84,7 @@ const Form: React.FC = () => {
             ) : null}
           </label>
         </div>
-        <div className="lg:row-start-3">
+        <div className="lg:col-span-1">
           <label className="block">
             <span className="text-[#ff0049] text-2xl">Celular</span>
 
@@ -107,8 +105,8 @@ const Form: React.FC = () => {
             ) : null}
           </label>
         </div>
-        <div className="col-span-1 lg:col-span-2 lg:row-start-3 flex gap-6">
-          <label className="block flex-1">
+        <div className="col-span-1">
+          <label className="block ">
             <span className="text-[#ff0049] text-2xl">Departamento</span>
 
             <select
@@ -143,8 +141,9 @@ const Form: React.FC = () => {
               })}
             </select>
           </label>
-
-          <label className="block flex-1">
+        </div>
+        <div className="col-span-1">
+          <label className="block ">
             <span className="text-[#ff0049] text-2xl">Provincia</span>
 
             <select
@@ -179,8 +178,9 @@ const Form: React.FC = () => {
               ))}
             </select>
           </label>
-
-          <label className="block flex-1">
+        </div>
+        <div className="col-span-1">
+          <label className="block ">
             <span className="text-[#ff0049] text-2xl">Distrito</span>
 
             <select
