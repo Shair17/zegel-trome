@@ -40,8 +40,18 @@ export const formSchema = z
   })
   .refine((data) => {
     const { department, province, district } = data;
+    const isLimaMetropolitana =
+      Boolean(department) && department === "Lima Metropolitana";
 
-    if (!Boolean(department) || !Boolean(province) || !Boolean(district)) {
+    if (!Boolean(department) || !Boolean(province)) {
+      return false;
+    }
+
+    if (isLimaMetropolitana) {
+      return true;
+    }
+
+    if (!Boolean(district)) {
       return false;
     }
 

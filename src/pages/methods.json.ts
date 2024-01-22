@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import nodemailer, { type SendMailOptions } from "nodemailer";
 import { formSchema, type FormDataValues } from "../schema";
+import axios from "axios";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -8,7 +9,7 @@ export const POST: APIRoute = async ({ request }) => {
     const ZEGEL_APP_PASSWORD = <string>import.meta.env.ZEGEL_APP_PASSWORD;
 
     const form = (await request.json()) as FormDataValues;
-
+    const formData = new FormData();
     const data = formSchema.safeParse(form);
 
     if (data.success) {
@@ -22,11 +23,11 @@ export const POST: APIRoute = async ({ request }) => {
 
       const mailOptions: SendMailOptions = {
         from: "zegelvirtualnoreply@gmail.com",
-        to: form.email,
+        to: data.data.email,
         subject:
           "¡Bienvenido(a) a Despega con Trome y Zegel! Accede a tu curso online ahora",
         html: `
-        <p>Estimado(a) ${form.fullName},</p>
+        <p>Estimado(a) ${data.data.fullName},</p>
   
         <p>En nombre del equipo de Trome y Zegel, queremos darte la más cordial bienvenida a nuestro programa educativo. Estamos emocionados de tenerte a bordo y confiamos en que tu experiencia de aprendizaje será enriquecedora.</p>
   
@@ -34,8 +35,8 @@ export const POST: APIRoute = async ({ request }) => {
   
         <ul>
         <li>Enlace de Acceso: <a href="https://campus.zegelvirtual.com/Login">https://campus.zegelvirtual.com/Login</a></li>
-        <li>Correo Electrónico: <strong>${form.email}</strong></li>
-        <li>Contraseña: <strong>${form.dni}</strong></li>
+        <li>Correo Electrónico: <strong>${data.data.email}</strong></li>
+        <li>Contraseña: <strong>${data.data.dni}</strong></li>
         </ul>
   
         <p>Por favor, sigue estos pasos para ingresar:</p>
@@ -70,6 +71,25 @@ export const POST: APIRoute = async ({ request }) => {
         }
         console.log("Correo enviado:", info.response);
       });
+
+      for (const key in data.data) {
+        if (data.data.hasOwnProperty(key)) {
+          let value = "";
+
+          // @ts-ignore
+          if (typeof data.data[key] === "boolean") {
+            // @ts-ignore
+            value = data.data[key] ? "Sí" : "No";
+          } else {
+            // @ts-ignore
+            value = data.data[key];
+          }
+
+          formData.append(key, value);
+        }
+      }
+
+      await axios.post(import.meta.env.GOOGLE_SHEET_API, formData);
 
       return new Response(
         JSON.stringify({
