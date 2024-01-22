@@ -89,6 +89,8 @@ export const POST: APIRoute = async ({ request }) => {
         }
       }
 
+      formData.append("date", new Date().toLocaleString());
+
       await axios.post(import.meta.env.GOOGLE_SHEET_API, formData);
 
       return new Response(
