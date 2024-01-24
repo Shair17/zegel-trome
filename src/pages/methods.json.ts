@@ -53,7 +53,9 @@ export const POST: APIRoute = async ({ request }) => {
         <li>Ingresa tu correo electrónico en el campo correspondiente.</li>
         <li>Utiliza tu DNI como contraseña para acceder al curso.</li>
         </ol>
-        
+
+        <p><strong>Recuerda que tu curso se activará en las próximas 24 horas.</strong></p>
+
         <p>Recuerda que este correo electrónico contiene información sensible, por lo que te recomendamos guardarla de manera segura. Si tienes algún problema para acceder o necesitas asistencia técnica, no dudes en contactarnos a rconcha@inlearning.edu.pe</p>
         
         <p>Recuerda que tienes 30 días para culminar el curso una vez que lo actives.</p>
