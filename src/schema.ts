@@ -3,19 +3,32 @@ import { locations } from "./data";
 
 export const formSchema = z
   .object({
-    fullName: z
+    names: z
       .string({
         required_error: "Nombre(s) requerido(s).",
         invalid_type_error: "Ingresa nombre(s) válido(s).",
       })
-      .min(1, { message: "Ingresa nombre(s) válido(s)." }),
+      .min(2, { message: "Ingresa nombre(s) válido(s)." }),
+    surname: z
+      .string({
+        required_error: "Primer apellido requerido.",
+        invalid_type_error: "Ingresa un apellido válido.",
+      })
+      .min(2, { message: "Ingresa un apellido válido." }),
+    secondSurname: z
+      .string({
+        required_error: "Segundo apellido requerido.",
+        invalid_type_error: "Ingresa un apellido válido.",
+      })
+      .min(2, { message: "Ingresa un apellido válido." }),
     dni: z
       .string({
         required_error: "DNI requerido.",
         invalid_type_error: "Ingresa tu DNI válido.",
       })
       .min(8, { message: "Ingresa tu DNI válido." })
-      .max(8, { message: "Ingresa tu DNI válido." }),
+      .max(8, { message: "Ingresa tu DNI válido." })
+      .regex(/^\d+$/, { message: "Ingresa tu DNI válido." }),
     email: z
       .string({
         required_error: "Correo electrónico requerido.",
@@ -31,7 +44,8 @@ export const formSchema = z
       })
       .min(9, { message: "Ingresa un número de celular válido." })
       .max(9, { message: "Ingresa un número de celular válido." })
-      .startsWith("9", { message: "Ingresa un número de celular válido." }),
+      .startsWith("9", { message: "Ingresa un número de celular válido." })
+      .regex(/^\d+$/, { message: "Ingresa un número de celular válido." }),
     department: z.string(),
     province: z.string(),
     district: z.string(),

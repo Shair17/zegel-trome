@@ -21,13 +21,20 @@ export const POST: APIRoute = async ({ request }) => {
         },
       });
 
+      const { names, surname, secondSurname, ...rest } = data.data;
+
+      const user = {
+        fullName: `${names.trim()} ${surname.trim()} ${secondSurname.trim()}`,
+        ...rest,
+      };
+
       const mailOptions: SendMailOptions = {
         from: "zegelvirtualnoreply@gmail.com",
-        to: data.data.email,
+        to: user.email,
         subject:
           "¡Bienvenido(a) a Despega con Trome y Zegel! Accede a tu curso online ahora",
         html: `
-        <p>Estimado(a) ${data.data.fullName},</p>
+        <p>Estimado(a) ${user.fullName},</p>
   
         <p>En nombre del equipo de Trome y Zegel, queremos darte la más cordial bienvenida a nuestro programa educativo. Estamos emocionados de tenerte a bordo y confiamos en que tu experiencia de aprendizaje será enriquecedora.</p>
   
@@ -35,8 +42,8 @@ export const POST: APIRoute = async ({ request }) => {
   
         <ul>
         <li>Enlace de Acceso: <a href="https://campus.zegelvirtual.com/Login">https://campus.zegelvirtual.com/Login</a></li>
-        <li>Correo Electrónico: <strong>${data.data.email}</strong></li>
-        <li>Contraseña: <strong>${data.data.dni}</strong></li>
+        <li>Correo Electrónico: <strong>${user.email}</strong></li>
+        <li>Contraseña: <strong>${user.dni}</strong></li>
         </ul>
   
         <p>Por favor, sigue estos pasos para ingresar:</p>
@@ -72,17 +79,21 @@ export const POST: APIRoute = async ({ request }) => {
         console.log("Correo enviado:", info.response);
       });
 
-      for (const key in data.data) {
-        if (data.data.hasOwnProperty(key)) {
+      if (user.department === "Lima Metropolitana") {
+        [user.district, user.province] = [user.province, user.district];
+      }
+
+      for (const key in user) {
+        if (user.hasOwnProperty(key)) {
           let value = "";
 
           // @ts-ignore
-          if (typeof data.data[key] === "boolean") {
+          if (typeof user[key] === "boolean") {
             // @ts-ignore
-            value = data.data[key] ? "Sí" : "No";
+            value = user[key] ? "Sí" : "No";
           } else {
             // @ts-ignore
-            value = data.data[key];
+            value = user[key];
           }
 
           formData.append(key, value);
