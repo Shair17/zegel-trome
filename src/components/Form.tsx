@@ -54,7 +54,9 @@ const Form: React.FC = () => {
         </div>
         <div className="lg:col-span-1">
           <label className="block">
-            <span className="text-[#ff0049] text-2xl truncate">Primer Apellido</span>
+            <span className="text-[#ff0049] text-2xl truncate">
+              Primer Apellido
+            </span>
 
             <input
               type="text"
@@ -69,7 +71,9 @@ const Form: React.FC = () => {
         </div>
         <div className="lg:col-span-1">
           <label className="block">
-            <span className="text-[#ff0049] text-2xl truncate">Segundo Apellido</span>
+            <span className="text-[#ff0049] text-2xl truncate">
+              Segundo Apellido
+            </span>
 
             <input
               type="text"
