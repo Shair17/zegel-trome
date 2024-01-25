@@ -21,12 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
         },
       });
 
-      const { names, surname, secondSurname, ...rest } = data.data;
-
-      const user = {
-        fullName: `${names.trim()} ${surname.trim()} ${secondSurname.trim()}`,
-        ...rest,
-      };
+      const user = data.data;
 
       const mailOptions: SendMailOptions = {
         from: "zegelvirtualnoreply@gmail.com",
@@ -34,7 +29,7 @@ export const POST: APIRoute = async ({ request }) => {
         subject:
           "¡Bienvenido(a) a Despega con Trome y Zegel! Accede a tu curso online ahora",
         html: `
-        <p>Estimado(a) ${user.fullName},</p>
+        <p>Estimado(a) ${`${user.names.trim()} ${user.surname.trim()} ${user.secondSurname.trim()}`},</p>
   
         <p>En nombre del equipo de Trome y Zegel, queremos darte la más cordial bienvenida a nuestro programa educativo. Estamos emocionados de tenerte a bordo y confiamos en que tu experiencia de aprendizaje será enriquecedora.</p>
   
