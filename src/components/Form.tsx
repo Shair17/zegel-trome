@@ -328,6 +328,10 @@ const Form: React.FC = () => {
         >
           {isLoading ? "Cargando..." : "Regístrate aquí"}
         </button>
+
+        <p className="text-white text-center mx-auto text-md md:text-lg lg:text-xl font-bold mt-12">
+        * Recuerda que tu curso se activará en las próximas 24 horas.
+      </p>
       </div>
     </form>
   );
