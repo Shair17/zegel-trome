@@ -51,7 +51,7 @@ export const POST: APIRoute = async ({ request }) => {
 
         <p><strong>Recuerda que tu curso se activará en las próximas 24 horas.</strong></p>
 
-        <p>Recuerda que este correo electrónico contiene información sensible, por lo que te recomendamos guardarla de manera segura. Si tienes algún problema para acceder o necesitas asistencia técnica, no dudes en contactarnos a rconcha@inlearning.edu.pe</p>
+        <p>Este correo electrónico contiene información sensible, por lo que te recomendamos guardarla de manera segura. Si tienes algún problema para acceder o necesitas asistencia técnica, no dudes en contactarnos a <a href="mailto:gestion.proyectos@inlearning.edu.pe">gestion.proyectos@inlearning.edu.pe</a></p>
         
         <p>Recuerda que tienes 30 días para culminar el curso una vez que lo actives.</p>
         
@@ -65,7 +65,7 @@ export const POST: APIRoute = async ({ request }) => {
         <p><strong>Roger</strong></p>
         <p>Jefe de Producto - Educación Ejecutiva</p>
         <p>Despega con Trome y Zegel</p>
-        <p><a href="mailto:rconcha@inlearning.edu.pe">rconcha@inlearning.edu.pe</a></p>
+        <p><a href="mailto:gestion.proyectos@inlearning.edu.pe">gestion.proyectos@inlearning.edu.pe</a></p>
         `,
       };
 
