@@ -88,6 +88,43 @@ const Form: React.FC = () => {
         </div>
         <div className="lg:col-span-1">
           <label className="block">
+            <span className="text-[#ff0049] text-2xl">Fecha de nacimiento</span>
+
+            <input
+              type="date"
+              className="mt-3 block w-full rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
+              placeholder="Ingresa tu fecha de nacimiento"
+              required
+              pattern="\d{4}-\d{2}-\d{2}"
+              {...register("birthdate", { required: true, valueAsDate: true })}
+            />
+          </label>
+          {errors.birthdate?.message ? (
+            <p className="mt-1 text-white">{errors.birthdate?.message}</p>
+          ) : null}
+        </div>
+        <div className="lg:col-span-1">
+          <label className="block">
+            <span className="text-[#ff0049] text-2xl">Sexo</span>
+
+            <select
+              className="block w-full mt-3 rounded-xl bg-white border-transparent focus:border-neutral-200 focus:bg-neutral-100 focus:ring-0 text-xl"
+              required
+              {...register("sex", { required: true })}
+            >
+              <option value="">Selecciona</option>
+
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </label>
+          {errors.sex?.message ? (
+            <p className="mt-1 text-white">{errors.sex?.message}</p>
+          ) : null}
+        </div>
+        <div className="lg:col-span-1">
+          <label className="block">
             <span className="text-[#ff0049] text-2xl">DNI</span>
 
             <input
@@ -107,7 +144,7 @@ const Form: React.FC = () => {
             <p className="mt-1 text-white">{errors.dni?.message}</p>
           ) : null}
         </div>
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-1">
           <label className="block">
             <span className="text-[#ff0049] text-2xl">Correo electrónico</span>
 
@@ -330,8 +367,8 @@ const Form: React.FC = () => {
         </button>
 
         <p className="text-white text-center mx-auto text-md md:text-lg lg:text-xl font-bold mt-12">
-        * Recuerda que tu curso se activará en las próximas 24 horas.
-      </p>
+          * Recuerda que tu curso se activará en las próximas 24 horas.
+        </p>
       </div>
     </form>
   );

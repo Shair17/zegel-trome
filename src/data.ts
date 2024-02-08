@@ -1,3 +1,5 @@
+export const sexs = ["Masculino", "Femenino", "Otro"];
+
 export const locations = {
   Amazonas: {
     Bagua: ["Aramango", "Bagua", "Copallín", "El Parco", "Imaza", "La Peca"],

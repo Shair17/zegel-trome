@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { locations } from "./data";
+import { locations, sexs } from "./data";
 
 export const formSchema = z
   .object({
@@ -51,6 +51,18 @@ export const formSchema = z
     district: z.string(),
     privacyPolicyAccept: z.boolean().default(false),
     dataUsageAccept: z.boolean().default(false).optional(),
+    birthdate: z.date({
+      required_error: "Fecha de nacimiento requerida.",
+      invalid_type_error: "Ingresa tu fecha de nacimiento.",
+    }),
+    sex: z
+      .string({
+        required_error: "Sexo requerido.",
+        invalid_type_error: "Selecciona una opción.",
+      })
+      .refine((sex) => sexs.includes(sex), {
+        message: "Selecciona una opción.",
+      }),
   })
   .refine((data) => {
     const { department, province, district } = data;

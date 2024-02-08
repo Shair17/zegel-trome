@@ -9,6 +9,7 @@ export const POST: APIRoute = async ({ request }) => {
     const ZEGEL_APP_PASSWORD = <string>import.meta.env.ZEGEL_APP_PASSWORD;
 
     const form = (await request.json()) as FormDataValues;
+    form.birthdate = new Date(form.birthdate);
     const formData = new FormData();
     const data = formSchema.safeParse(form);
 
@@ -21,7 +22,7 @@ export const POST: APIRoute = async ({ request }) => {
         },
       });
 
-      const user = data.data;
+      let user = data.data;
 
       const mailOptions: SendMailOptions = {
         from: "zegelvirtualnoreply@gmail.com",
@@ -79,6 +80,9 @@ export const POST: APIRoute = async ({ request }) => {
       if (user.department === "Lima Metropolitana") {
         [user.district, user.province] = [user.province, user.district];
       }
+
+      // @ts-ignore
+      user.birthdate = user.birthdate.toLocaleDateString();
 
       for (const key in user) {
         if (user.hasOwnProperty(key)) {
